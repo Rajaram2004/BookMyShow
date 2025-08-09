@@ -1,11 +1,14 @@
 package service;
 
+import java.time.LocalDate;
 import java.util.HashMap;
+import java.util.Map;
 import java.util.Scanner;
 
 import bank.Account;
 import main.Booking;
 import main.InputScanner;
+import main.Theatre;
 
 public class BookingService {
 	
@@ -116,12 +119,80 @@ public class BookingService {
 			double remainingAmount = account.getBalance();
 			account.setBalance(remainingAmount+afterDectect);
 			userBooking.setActive(false);
+			
+			//return ticket to theatre;
+			
+			returnTicket(userBooking);
+			
+			
+			
 			System.out.println("75% of the amount has been credited to your bank account");
 		}else {
 			System.err.println("This ticket has already been cancelled ");
 		}
 		
 	}
+	
+	
+	private static void returnTicket(Booking userBooking) {
+	    int userTicketCount = userBooking.getNumberOfTickets();
+	    LocalDate bookedDate = userBooking.getBookingDate();
+	    Theatre theatre = userBooking.getTheatre();
+	    int movieId = userBooking.getMovie().getMovieId(); // You need this from booking
+
+	    Map<LocalDate, Map<Integer,Integer>> availableTicketOnDate = theatre.getAvailableTicketOnDate();
+
+	    // Get current available seats for that movie on that date
+	    int noOfTicket = availableTicketOnDate.get(bookedDate).get(movieId);
+
+	    // Add back the returned tickets
+	    noOfTicket += userTicketCount;
+
+	    // Update the map
+	    availableTicketOnDate.get(bookedDate).put(movieId, noOfTicket);
+
+	    // Optional: Confirm update
+	    System.out.println("Tickets returned successfully. Updated availability:");
+	    System.out.println(availableTicketOnDate);
+	}
+
+	
+//	private static void returnTicket(Booking userBooking) {
+//		int userTicketCount = userBooking.getNumberOfTickets();
+//		LocalDate bookedDate =userBooking.getBookingDate();
+//		Theatre theatreId = userBooking.getTheatre();
+//		
+//		Map<LocalDate, Map<Integer,Integer>> AvailableTicketOnDate=theatreId.getAvailableTicketOnDate();
+//		System.out.println(AvailableTicketOnDate);
+//		int noOfTicket = AvailableTicketOnDate.get(bookedDate).get(theatreId.getTheatreId());
+//		System.err.println(noOfTicket);
+//		
+//		noOfTicket+=userBooking.getNumberOfTickets();
+//		AvailableTicketOnDate.get(bookedDate).put(theatreId.getTheatreId(),noOfTicket);
+//	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	
 	

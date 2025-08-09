@@ -55,28 +55,29 @@ public class Operations {
 			theatres.displayAllTheatres();
 			 break;
 		  case 5:
-			  System.out.println("You have Selected Display Theatre Wise Movies");
-			  theatres.displayTheatreWiseMovies(true);
-			 
+			  System.out.println("You have Selected Display Seat Availability");
+			  theatres.displayTheatreWiseMovies();
+			  int num5 = BookMyShow.Features();
+				Operations.operation(num5);
 			  break;
 		  case 6:
 		    System.out.println("You have Selected Book Ticket");
 		    movie.displayAllMovie(false);
-		    theatres.displayTheatreWiseMovies(false);
+		    theatres.displayTheatreWiseMovies();
 		    booking.bookTicket();
 		    break;
 		  case 7:
 		    System.out.println("You have Selected Check Ticket Status");
 		    int BookingId = BookingService.checkBookingKey();
 		    BookingService.SearchByBookingId(BookingId);
-		    int num = BookMyShow.Features();
-			Operations.operation(num);
+		    int num7 = BookMyShow.Features();
+			Operations.operation(num7);
 		    break;
 		  case 8:
 			  System.out.println("You have Selected View Booking");
 			  BookingService.printAllBookings();
-			  int num1 = BookMyShow.Features();
-		        Operations.operation(num1);
+			  int num8 = BookMyShow.Features();
+		        Operations.operation(num8);
 			  break;
 		  case 9:
 			  System.out.println("You have Selected Cancel Ticket");

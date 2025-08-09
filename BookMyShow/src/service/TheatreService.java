@@ -2,7 +2,7 @@ package service;
 
 import java.time.LocalDate;
 import java.util.HashMap;
-import java.util.HashSet;
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -20,39 +20,45 @@ public class TheatreService {
 		this.theatre = theatre;
 		this.movies=movies;
 		
+		initializeTheatre();
+		
+
+	}
+	
+	public void initializeTheatre(){
 		Map<LocalDate, Map<Integer,Integer>> moviesInOurTheatre1=new HashMap<>();
 		
 		initializeSeats(LocalDate.of(2025, 8, 11), new int[]{1, 2, 3}, 120,moviesInOurTheatre1);
         initializeSeats(LocalDate.of(2025, 8, 12), new int[]{2, 3}, 100,moviesInOurTheatre1);
-        initializeSeats(LocalDate.of(2025, 8, 12), new int[]{1,2, 3}, 100,moviesInOurTheatre1);
+        initializeSeats(LocalDate.of(2025, 8, 13), new int[]{1,2, 3}, 100,moviesInOurTheatre1);
         
 
 		Map<LocalDate, Map<Integer,Integer>> moviesInOurTheatre2=new HashMap<>();
 		
-		initializeSeats(LocalDate.of(2025, 8, 11), new int[]{4, 5, 6}, 120,moviesInOurTheatre1);
-        initializeSeats(LocalDate.of(2025, 8, 12), new int[]{4, 5}, 100,moviesInOurTheatre1);
-        initializeSeats(LocalDate.of(2025, 8, 12), new int[]{4,5, 6}, 100,moviesInOurTheatre1);
+		initializeSeats(LocalDate.of(2025, 8, 11), new int[]{4, 5, 6}, 120,moviesInOurTheatre2);
+        initializeSeats(LocalDate.of(2025, 8, 12), new int[]{4, 5}, 100,moviesInOurTheatre2);
+        initializeSeats(LocalDate.of(2025, 8, 13), new int[]{4,5, 6}, 100,moviesInOurTheatre2);
         
 
 		Map<LocalDate, Map<Integer,Integer>> moviesInOurTheatre3=new HashMap<>();
 		
-		initializeSeats(LocalDate.of(2025, 8, 11), new int[]{1, 2, 3}, 120,moviesInOurTheatre1);
-        initializeSeats(LocalDate.of(2025, 8, 12), new int[]{2, 3}, 100,moviesInOurTheatre1);
-        initializeSeats(LocalDate.of(2025, 8, 12), new int[]{1,2, 3}, 100,moviesInOurTheatre1);
+		initializeSeats(LocalDate.of(2025, 8, 11), new int[]{1, 2, 3}, 120,moviesInOurTheatre3);
+        initializeSeats(LocalDate.of(2025, 8, 12), new int[]{2, 3}, 100,moviesInOurTheatre3);
+        initializeSeats(LocalDate.of(2025, 8, 13), new int[]{1,2, 3}, 100,moviesInOurTheatre3);
         
 
 		Map<LocalDate, Map<Integer,Integer>> moviesInOurTheatre4=new HashMap<>();
 		
-		initializeSeats(LocalDate.of(2025, 8, 11), new int[]{1, 2, 3}, 120,moviesInOurTheatre1);
-        initializeSeats(LocalDate.of(2025, 8, 12), new int[]{2, 3}, 100,moviesInOurTheatre1);
-        initializeSeats(LocalDate.of(2025, 8, 12), new int[]{1,2, 3}, 100,moviesInOurTheatre1);
+		initializeSeats(LocalDate.of(2025, 8, 11), new int[]{1, 2, 3}, 120,moviesInOurTheatre4);
+        initializeSeats(LocalDate.of(2025, 8, 12), new int[]{2, 3}, 100,moviesInOurTheatre4);
+        initializeSeats(LocalDate.of(2025, 8, 13), new int[]{1,2, 3}, 100,moviesInOurTheatre4);
         
 
 		Map<LocalDate, Map<Integer,Integer>> moviesInOurTheatre5=new HashMap<>();
 		
-		initializeSeats(LocalDate.of(2025, 8, 11), new int[]{1, 2, 3}, 120,moviesInOurTheatre1);
-        initializeSeats(LocalDate.of(2025, 8, 12), new int[]{2, 3}, 100,moviesInOurTheatre1);
-        initializeSeats(LocalDate.of(2025, 8, 12), new int[]{1,2, 3}, 100,moviesInOurTheatre1);
+		initializeSeats(LocalDate.of(2025, 8, 11), new int[]{1, 2, 3}, 120,moviesInOurTheatre5);
+        initializeSeats(LocalDate.of(2025, 8, 12), new int[]{2, 3}, 100,moviesInOurTheatre5);
+        initializeSeats(LocalDate.of(2025, 8, 13), new int[]{1,2, 3}, 100,moviesInOurTheatre5);
         
 
         theatre.add(new Theatre(101, "INOX", "Chennai", 120, 200.0, moviesInOurTheatre1));
@@ -60,8 +66,6 @@ public class TheatreService {
         theatre.add(new Theatre(103, "SPI Cinemas", "Hyderabad", 100, 200.0, moviesInOurTheatre3));
         theatre.add(new Theatre(104, "Escape", "Mumbai", 180, 200.0, moviesInOurTheatre4));
         theatre.add(new Theatre(105, "Cinepolis", "Delhi", 200, 200.0, moviesInOurTheatre5));
-		
-
 	}
 	
 	
@@ -115,22 +119,20 @@ public class TheatreService {
 
 	
 	public void moviesInTheatre() {
-		
-	    for (Theatre tempTheatre : theatre) {
-	    	
-	        int id = tempTheatre.getTheatreId();
-	        moviesInOurTheatre.put(id, new HashSet<>());
+	    System.out.println("----------------------------------------------------------------------");
+	    System.out.printf("| %-10s | %-20s | %-30s |\n", "Movie ID", "Title", "Theatre IDs");
+	    System.out.println("----------------------------------------------------------------------");
+
+	    for (Movies m : movies) {
+	        System.out.printf("| %-10d | %-20s | %-30s |\n",
+	                m.getMovieId(),
+	                m.getTitle(),
+	                m.getListTheatre());
 	    }
-	   
-	    for (Movies tempMovies : movies) {
-	        for (Integer id : tempMovies.listTheatre) {
-	            if (moviesInOurTheatre.containsKey(id)) {
-	                moviesInOurTheatre.get(id).add(tempMovies.getMovieId());
-	            }
-	        }
-	    }
-	    
+
+	    System.out.println("----------------------------------------------------------------------");
 	}
+
 
 	public  List<Theatre> getTheatreList() {
 		return theatre;
@@ -148,39 +150,48 @@ public class TheatreService {
 		this.movies = movies;
 	}
 
-	public Map<LocalDate, Map<Integer,Integer>> getMoviesInOurTheatre() {
-		return moviesInOurTheatre;
-	}
-
-	public void setMoviesInOurTheatre(Map<LocalDate, Map<Integer,Integer>>moviesInOurTheatre) {
-		this.moviesInOurTheatre = moviesInOurTheatre;
-	}
+	
 
 	@Override
 	public String toString() {
 		return "TheatreService [toString()=" + super.toString() + "]";
 	}
 
-	public void displayTheatreWiseMovies(boolean callOperation) {
-		moviesInTheatre();
-		System.out.println("----------------------------------------------------------------------");
-		System.out.printf("| %-10s | %-20s | %-30s |\n", "Theatre ID", "Theatre Name", "Movie IDs");
-		System.out.println("----------------------------------------------------------------------");
+	public void displayTheatreWiseMovies() {
+	    moviesInTheatre();
 
-		for (Theatre t : theatre) {
-		    int id = t.getTheatreId();
-		    Set<Integer> movieIds = moviesInOurTheatre.getOrDefault(id, new HashSet<>());
-		    System.out.printf("| %-10d | %-20s | %-30s |\n", id, t.getName(), movieIds.toString());
-		}
+	    System.out.println("\n--------------------------------------------------------------------------");
+	    System.out.printf("| %-10s | %-20s | %-30s |\n", "Theatre ID", "Theatre Name", "Date-wise Movie Seats");
+	    System.out.println("---------------------------------------------------------------------------");
 
-		System.out.println("----------------------------------------------------------------------");
-		if(callOperation) {
-	    	 int num = BookMyShow.Features();
-	 		Operations.operation(num);
+	    for (Theatre t : theatre) {
+	        Map<LocalDate, Map<Integer, Integer>> dateWiseSeats = t.getAvailableTicketOnDate();
+
+	        boolean firstRow = true;
+	        for (Map.Entry<LocalDate, Map<Integer, Integer>> entry : dateWiseSeats.entrySet()) {
+	            if (firstRow) {
+	               
+	                System.out.printf("| %-10d | %-20s | %s : %s |\n",
+	                        t.getTheatreId(),
+	                        t.getName(),
+	                        entry.getKey(),
+	                        entry.getValue());
+	                firstRow = false;
+	            } else {
+	                
+	                System.out.printf("| %-10s | %-20s | %s : %s |\n",
+	                        "",
+	                        "",
+	                        entry.getKey(),
+	                        entry.getValue());
+	            }
+	        }
+	        System.out.println("--------------------------------------------------------------------------");
 	    }
-	   
 	}
 
 
-
 }
+
+
+

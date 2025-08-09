@@ -57,9 +57,9 @@ public class TicketService {
             withdrawAmount = ticketCount * theatreId.getPricePerTicket();
             flag= AccountService.withdrawMoney(withdrawAmount);
             accId=AccountService.paidAccountId;
-            System.err.println("----------"+accId);
+            
         }
-        System.err.println("----------"+accId);
+       
         int nextBookingId = BookingService.nextBookingId();
         String UserName = getUserName();
         
@@ -73,13 +73,11 @@ public class TicketService {
         //List<Theatre> theatreList = theatreId.getTheatreList();
  
         updateTicket(theatreId,bookingDate,ticketCount,movieId);
-        System.out.println(ticketCount+" Tickets Booked");
+        System.out.println("Thank you "+UserName+" "+ticketCount+" Tickets Booked");
         int num = BookMyShow.Features();
 		Operations.operation(num);
     }
 
-
-    
 
 
 //--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------

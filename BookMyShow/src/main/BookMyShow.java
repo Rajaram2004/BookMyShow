@@ -50,7 +50,7 @@ public class BookMyShow {
 		    "2 . Search Movie By Name",
 		    "3 . View Movie By Genre",
 		    "4 . Display All Theatre",
-		    "5 . Display Theatre Wise Movies",
+		    "5 . Display Seat Availability",
 		    "6 . Book Ticket",
 		    "7 . Ticket Status",
 		    "8 . View Booking",
