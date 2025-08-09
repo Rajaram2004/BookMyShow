@@ -51,11 +51,13 @@ public class Operations {
 			movie.movieByGenre();
 			break;
 		  case 4:
-			System.out.println("You have Selected  Display All Theatre");
+			System.out.println("You have Selected Display All Theatre");
 			theatres.displayAllTheatres();
 			 break;
 		  case 5:
+			  System.out.println("You have Selected Display Theatre Wise Movies");
 			  theatres.displayTheatreWiseMovies(true);
+			 
 			  break;
 		  case 6:
 		    System.out.println("You have Selected Book Ticket");

@@ -9,9 +9,9 @@ public class Theatre {
 	private String location;
 	private int totalSeats;
 	private double pricePerTicket;
-	static Map<LocalDate, Integer> dateWiseSeats; 
+	Map<LocalDate, Map<Integer,Integer>> dateWiseSeats;
 	
-	public Theatre(int theatreId,String name, String location, int totalSeats,double pricePerTicket,Map<LocalDate, Integer> dateWiseSeats) {
+	public Theatre(int theatreId,String name, String location, int totalSeats,double pricePerTicket, Map<LocalDate, Map<Integer,Integer>> dateWiseSeats) {
 		this.theatreId=theatreId;
 		this.name = name;
 		this.location = location;
@@ -28,11 +28,11 @@ public class Theatre {
 		this.totalSeats = totalSeats;
 	}
 
-	public Map<LocalDate, Integer> getdateWiseSeats() {
+	public Map<LocalDate, Map<Integer,Integer>> getdateWiseSeats() {
 		return dateWiseSeats;
 	}
 
-	public void setdateWiseSeats(Map<LocalDate, Integer> dateWiseSeats) {
+	public void setdateWiseSeats(Map<LocalDate, Map<Integer,Integer>> dateWiseSeats) {
 		this.dateWiseSeats = dateWiseSeats;
 	}
 	
@@ -70,6 +70,9 @@ public class Theatre {
 	
 	public int gettotalSeats() {
 		return totalSeats;
+	}
+	public Map<LocalDate, Map<Integer,Integer>> getAvailableTicketOnDate(){
+		return dateWiseSeats;
 	}
 	
 	@Override

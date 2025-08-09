@@ -13,49 +13,88 @@ import main.Operations;
 import main.Theatre;
 
 public class TheatreService {
-	private static List<Theatre> theatre;
+	private  List<Theatre> theatre;
 	private List<Movies> movies;
-	HashMap<Integer,Set<Integer>> moviesInOurTheatre=new HashMap<>();
 	
 	public TheatreService(List<Theatre> theatre,List<Movies> movies) {
 		this.theatre = theatre;
 		this.movies=movies;
 		
-		Map<LocalDate, Integer> dateWise1 = new HashMap<>();
+		Map<LocalDate, Map<Integer,Integer>> moviesInOurTheatre1=new HashMap<>();
 		
-		dateWise1.put(LocalDate.of(2025, 8, 11), 120);
-		dateWise1.put(LocalDate.of(2025, 8, 12), 120);
-		dateWise1.put(LocalDate.of(2025, 8, 13), 120);
+		initializeSeats(LocalDate.of(2025, 8, 11), new int[]{1, 2, 3}, 120,moviesInOurTheatre1);
+        initializeSeats(LocalDate.of(2025, 8, 12), new int[]{2, 3}, 100,moviesInOurTheatre1);
+        initializeSeats(LocalDate.of(2025, 8, 12), new int[]{1,2, 3}, 100,moviesInOurTheatre1);
+        
 
-		Map<LocalDate, Integer> dateWise2 = new HashMap<>();
-		dateWise2.put(LocalDate.of(2025, 8, 11), 150);
-		dateWise2.put(LocalDate.of(2025, 8, 12), 150);
-		dateWise2.put(LocalDate.of(2025, 8, 13), 150);
+		Map<LocalDate, Map<Integer,Integer>> moviesInOurTheatre2=new HashMap<>();
+		
+		initializeSeats(LocalDate.of(2025, 8, 11), new int[]{4, 5, 6}, 120,moviesInOurTheatre1);
+        initializeSeats(LocalDate.of(2025, 8, 12), new int[]{4, 5}, 100,moviesInOurTheatre1);
+        initializeSeats(LocalDate.of(2025, 8, 12), new int[]{4,5, 6}, 100,moviesInOurTheatre1);
+        
 
-		Map<LocalDate, Integer> dateWise3 = new HashMap<>();
-		dateWise3.put(LocalDate.of(2025, 8, 11), 100);
-		dateWise3.put(LocalDate.of(2025, 8, 12), 100);
-		dateWise3.put(LocalDate.of(2025, 8, 13), 100);
+		Map<LocalDate, Map<Integer,Integer>> moviesInOurTheatre3=new HashMap<>();
+		
+		initializeSeats(LocalDate.of(2025, 8, 11), new int[]{1, 2, 3}, 120,moviesInOurTheatre1);
+        initializeSeats(LocalDate.of(2025, 8, 12), new int[]{2, 3}, 100,moviesInOurTheatre1);
+        initializeSeats(LocalDate.of(2025, 8, 12), new int[]{1,2, 3}, 100,moviesInOurTheatre1);
+        
 
-		Map<LocalDate, Integer> dateWise4 = new HashMap<>();
-		dateWise4.put(LocalDate.of(2025, 8, 11), 180);
-		dateWise4.put(LocalDate.of(2025, 8, 12), 180);
-		dateWise4.put(LocalDate.of(2025, 8, 13), 180);
+		Map<LocalDate, Map<Integer,Integer>> moviesInOurTheatre4=new HashMap<>();
+		
+		initializeSeats(LocalDate.of(2025, 8, 11), new int[]{1, 2, 3}, 120,moviesInOurTheatre1);
+        initializeSeats(LocalDate.of(2025, 8, 12), new int[]{2, 3}, 100,moviesInOurTheatre1);
+        initializeSeats(LocalDate.of(2025, 8, 12), new int[]{1,2, 3}, 100,moviesInOurTheatre1);
+        
 
-		Map<LocalDate, Integer> dateWise5 = new HashMap<>();
-		dateWise5.put(LocalDate.of(2025, 8, 11), 200);
-		dateWise5.put(LocalDate.of(2025, 8, 12), 200);
-		dateWise5.put(LocalDate.of(2025, 8, 13), 200);
+		Map<LocalDate, Map<Integer,Integer>> moviesInOurTheatre5=new HashMap<>();
+		
+		initializeSeats(LocalDate.of(2025, 8, 11), new int[]{1, 2, 3}, 120,moviesInOurTheatre1);
+        initializeSeats(LocalDate.of(2025, 8, 12), new int[]{2, 3}, 100,moviesInOurTheatre1);
+        initializeSeats(LocalDate.of(2025, 8, 12), new int[]{1,2, 3}, 100,moviesInOurTheatre1);
+        
 
-
-        theatre.add(new Theatre(101, "INOX", "Chennai", 120, 200.0, dateWise1));
-        theatre.add(new Theatre(102, "PVR", "Bangalore", 150, 200.0, dateWise2));
-        theatre.add(new Theatre(103, "SPI Cinemas", "Hyderabad", 100, 200.0, dateWise3));
-        theatre.add(new Theatre(104, "Escape", "Mumbai", 180, 200.0, dateWise4));
-        theatre.add(new Theatre(105, "Cinepolis", "Delhi", 200, 200.0, dateWise5));
+        theatre.add(new Theatre(101, "INOX", "Chennai", 120, 200.0, moviesInOurTheatre1));
+        theatre.add(new Theatre(102, "PVR", "Bangalore", 150, 200.0, moviesInOurTheatre2));
+        theatre.add(new Theatre(103, "SPI Cinemas", "Hyderabad", 100, 200.0, moviesInOurTheatre3));
+        theatre.add(new Theatre(104, "Escape", "Mumbai", 180, 200.0, moviesInOurTheatre4));
+        theatre.add(new Theatre(105, "Cinepolis", "Delhi", 200, 200.0, moviesInOurTheatre5));
 		
 
 	}
+	
+	
+	 public void initializeSeats(LocalDate date, int[] movieIds, int seatsPerMovie,Map<LocalDate, Map<Integer,Integer>> moviesInOurTheatre) {
+	        Map<Integer, Integer> movieSeats = new HashMap<>();
+	        for (int movieId : movieIds) {
+	            movieSeats.put(movieId, seatsPerMovie);
+	        }
+	        moviesInOurTheatre.put(date, movieSeats);
+	    }
+	 
+	 
+	 public void printSeats(Map<LocalDate, Map<Integer, Integer>> dateWiseSeats) {
+		    for (Map.Entry<LocalDate, Map<Integer, Integer>> dateEntry : dateWiseSeats.entrySet()) {
+		        System.out.println("Date: " + dateEntry.getKey());
+		        for (Map.Entry<Integer, Integer> movieEntry : dateEntry.getValue().entrySet()) {
+		            System.out.printf("  Movie %-3d | %-3d seats%n", movieEntry.getKey(), movieEntry.getValue());
+		        }
+		    }
+		}
+
+
+
+//	    public void printSeats() {
+//	        for (Map.Entry<LocalDate, Map<Integer, Integer>> entry : moviesInOurTheatre.entrySet()) {
+//	            System.out.println("Date: " + entry.getKey());
+//	            for (Map.Entry<Integer, Integer> movieEntry : entry.getValue().entrySet()) {
+//	                System.out.println("  Movie " + movieEntry.getKey() + " -> " + movieEntry.getValue() + " seats");
+//	            }
+//	        }
+//	    }
+	
+	
 
 	public void displayAllTheatres() {
 	    System.out.println("-----------------------------------------------------------------------------");
@@ -93,7 +132,7 @@ public class TheatreService {
 	    
 	}
 
-	public static List<Theatre> getTheatre() {
+	public  List<Theatre> getTheatreList() {
 		return theatre;
 	}
 
@@ -109,11 +148,11 @@ public class TheatreService {
 		this.movies = movies;
 	}
 
-	public HashMap<Integer, Set<Integer>> getMoviesInOurTheatre() {
+	public Map<LocalDate, Map<Integer,Integer>> getMoviesInOurTheatre() {
 		return moviesInOurTheatre;
 	}
 
-	public void setMoviesInOurTheatre(HashMap<Integer, Set<Integer>> moviesInOurTheatre) {
+	public void setMoviesInOurTheatre(Map<LocalDate, Map<Integer,Integer>>moviesInOurTheatre) {
 		this.moviesInOurTheatre = moviesInOurTheatre;
 	}
 

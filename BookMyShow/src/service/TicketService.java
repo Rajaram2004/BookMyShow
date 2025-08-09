@@ -53,7 +53,7 @@ public class TicketService {
         int accId=0;
         boolean flag=false;
         while(!flag) {
-            ticketCount = getTicketCount(theatreId, bookingDate);
+            ticketCount = getTicketCount(theatreId, bookingDate,movieId);
             withdrawAmount = ticketCount * theatreId.getPricePerTicket();
             flag= AccountService.withdrawMoney(withdrawAmount);
             accId=AccountService.paidAccountId;
@@ -70,32 +70,28 @@ public class TicketService {
         BookingService.addBooking(book);
         
         
-        
-        List<Theatre> theatreList = TheatreService.getTheatre();
-        updateDateOnTheatre(theatreList,ticketCount,theatreId.getTheatreId());
-        
+        //List<Theatre> theatreList = theatreId.getTheatreList();
+ 
+        updateTicket(theatreId,bookingDate,ticketCount,movieId);
         System.out.println(ticketCount+" Tickets Booked");
         int num = BookMyShow.Features();
 		Operations.operation(num);
     }
 
 
+    
 
 
 //--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     
-    
-    
-    private void updateDateOnTheatre(List<Theatre> theatreList, int ticketCount,int theatreId) {
-    	for(Theatre t : theatreList) {
-    		if(t.getTheatreId()==theatreId) {
-    			Map<LocalDate, Integer> availableTicketOnDate = t.getAvailableTicketOnDate();
-    		}
-    	}
-    	
+    private void updateTicket(Theatre theatreId,LocalDate bookingDate,int ticketCount,Movies movieId) {
+    	Map<LocalDate, Map<Integer,Integer>>  availableSeats = theatreId.getAvailableTicketOnDate();
+    	 int total = availableSeats.get(bookingDate).get(movieId.getMovieId());
+    	 total-=ticketCount;
+    	 System.err.println("Total seats : "+availableSeats.get(bookingDate));
+    	 availableSeats.get(bookingDate).put(movieId.getMovieId(),total);
+    	 System.err.println("Remaining Seats : "+availableSeats.get(bookingDate));
     }
-    
-    
     
     public String getUserName() {
         Scanner scanner = InputScanner.getScanner();
@@ -119,7 +115,7 @@ public class TicketService {
     private LocalDate getBookingDate(Theatre theatre) {
         LocalDate bookingDate = null;
         Scanner scanner = InputScanner.getScanner();
-        Map<LocalDate, Integer> availableSeats = theatre.getAvailableTicketOnDate();
+        Map<LocalDate, Map<Integer,Integer>> availableSeats = theatre.getAvailableTicketOnDate();
 
         while (true) {
             try {
@@ -140,28 +136,28 @@ public class TicketService {
         return bookingDate;
     }
 
-    private int getTicketCount(Theatre theatre, LocalDate date) {
+    private int getTicketCount(Theatre theatre, LocalDate date,Movies movieId) {
         Scanner sc = InputScanner.getScanner();
         System.out.println("Enter number of tickets: ");
         String input = sc.nextLine();
         try {
             int num = Integer.parseInt(input);
-            if (num > 0 && isTicketAvailable(theatre, date, num)) {
+            if (num > 0 && isTicketAvailable(theatre, date, num,movieId)) {
                 return num;
             } else {
                 System.err.println("Not enough tickets available on selected date.");
-                return getTicketCount(theatre, date);
+                return getTicketCount(theatre, date, movieId);
             }
         } catch (NumberFormatException e) {
             System.err.println("Invalid number.");
-            return getTicketCount(theatre, date);
+            return getTicketCount(theatre, date,movieId) ;
         }
     }
 
-    private boolean isTicketAvailable(Theatre theatre, LocalDate date, int count) {
-        Map<LocalDate, Integer> dateWiseSeats = theatre.getAvailableTicketOnDate();
+    private boolean isTicketAvailable(Theatre theatre, LocalDate date, int count,Movies movieId) {
+    	Map<LocalDate, Map<Integer,Integer>> dateWiseSeats = theatre.getAvailableTicketOnDate();
         if (!dateWiseSeats.containsKey(date)) return false;
-        int available = dateWiseSeats.get(date);
+        int available = dateWiseSeats.get(date).get(movieId.getMovieId());
         return available >= count;
     }
 
