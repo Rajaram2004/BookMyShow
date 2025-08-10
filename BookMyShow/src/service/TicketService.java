@@ -7,6 +7,7 @@ import java.util.Map;
 import java.util.Scanner;
 import java.util.Set;
 
+import login.User;
 import main.BookMyShow;
 import main.Booking;
 import main.InputScanner;
@@ -40,7 +41,7 @@ public class TicketService {
     
 //--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------    
 
-    public void bookTicket() {
+    public void bookTicket(User user) {
         Theatre theatreId = getTheatre();
         Movies movieId = getMovie(theatreId);
         
@@ -61,7 +62,7 @@ public class TicketService {
         }
        
         int nextBookingId = BookingService.nextBookingId();
-        String UserName = getUserName();
+        String UserName = user.getName();
         
        
         Booking book =new Booking(nextBookingId,UserName,movieId,theatreId,
@@ -74,6 +75,7 @@ public class TicketService {
  
         updateTicket(theatreId,bookingDate,ticketCount,movieId);
         System.out.println("Thank you "+UserName+" "+ticketCount+" Tickets Booked");
+        System.out.println("Your Ticket Id : "+ nextBookingId);
         int num = BookMyShow.Features();
 		Operations.operation(num);
     }
@@ -86,9 +88,9 @@ public class TicketService {
     	Map<LocalDate, Map<Integer,Integer>>  availableSeats = theatreId.getAvailableTicketOnDate();
     	 int total = availableSeats.get(bookingDate).get(movieId.getMovieId());
     	 total-=ticketCount;
-    	 System.err.println("Total seats : "+availableSeats.get(bookingDate));
+    	 
     	 availableSeats.get(bookingDate).put(movieId.getMovieId(),total);
-    	 System.err.println("Remaining Seats : "+availableSeats.get(bookingDate));
+    	 
     }
     
     public String getUserName() {

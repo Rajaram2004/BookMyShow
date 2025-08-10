@@ -1,5 +1,6 @@
 package main;
 
+import login.User;
 import service.AccountService;
 import service.BookingService;
 import service.TicketService;
@@ -13,11 +14,13 @@ public class Operations {
 	private static AccountService accService;
 	private static int userchoice=0;
 	private static TicketService booking;
-	public Operations(MovieService movie,TheatreService theatres,AccountService accService,TicketService booking){
+	public static User user;
+	public Operations(MovieService movie,TheatreService theatres,AccountService accService,TicketService booking,User user){
 		this.movie=movie;
 		this.theatres=theatres;
 		this.accService=accService;
 		this.booking=booking;
+		this.user=user;
 	}
 	
 	@Override
@@ -64,12 +67,15 @@ public class Operations {
 		    System.out.println("You have Selected Book Ticket");
 		    movie.displayAllMovie(false);
 		    theatres.displayTheatreWiseMovies();
-		    booking.bookTicket();
+		    booking.bookTicket(user);
 		    break;
 		  case 7:
 		    System.out.println("You have Selected Check Ticket Status");
 		    int BookingId = BookingService.checkBookingKey();
-		    BookingService.SearchByBookingId(BookingId);
+		    if(BookingId>0) {
+		    	BookingService.SearchByBookingId(BookingId);
+		    }
+		    	
 		    int num7 = BookMyShow.Features();
 			Operations.operation(num7);
 		    break;

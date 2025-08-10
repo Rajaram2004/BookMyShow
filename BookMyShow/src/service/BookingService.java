@@ -6,8 +6,10 @@ import java.util.Map;
 import java.util.Scanner;
 
 import bank.Account;
+import main.BookMyShow;
 import main.Booking;
 import main.InputScanner;
+import main.Operations;
 import main.Theatre;
 
 public class BookingService {
@@ -31,6 +33,10 @@ public class BookingService {
 	
 	
 	public static int checkBookingKey() {
+		if(booking.isEmpty()) {
+			System.out.println("No bookings available.");
+	        return 0;
+		}
 		
 		Scanner sc = InputScanner.getScanner();
 		System.out.print("Enter Your Ticket Id : ");
@@ -73,7 +79,7 @@ public class BookingService {
 	
 	public static void printAllBookings() {
 	    if (booking.isEmpty()) {
-	        System.out.println("No bookings available.");
+	        System.err.println("No bookings available.");
 	        return;
 	    }
 
@@ -105,17 +111,28 @@ public class BookingService {
 			return;
 		}
 		int bookingId = checkBookingKey();
+		boolean isPasswordValid=false;
+		while(!isPasswordValid) {
+			System.out.println("Hai " +Operations.user.getName());
+			int password =BookMyShow.getUserPassword();
+			if(password==Operations.user.getPassword()) {
+				isPasswordValid=true;
+			}else {
+				System.err.println("Invalid Pin , Please Re-Enter Your PIN");
+			}
+		}
+		
+		
 		Booking userBooking =booking.get(bookingId);
 		if(userBooking.isActive()) {
 			Account account = bank.get(userBooking.getBookingId());
 			double amount = userBooking.getTotalAmount();
 			
 			double afterDectect = 0.25*amount;
-			System.err.println("Amount going to remove "+afterDectect);
+			System.err.println("Amount Detected "+afterDectect);
 			afterDectect=amount-afterDectect;
 			System.out.print("Amount going to add "+afterDectect);
-			
-			System.err.println("--------------"+afterDectect);
+			System.out.println();
 			double remainingAmount = account.getBalance();
 			account.setBalance(remainingAmount+afterDectect);
 			userBooking.setActive(false);
@@ -138,61 +155,20 @@ public class BookingService {
 	    int userTicketCount = userBooking.getNumberOfTickets();
 	    LocalDate bookedDate = userBooking.getBookingDate();
 	    Theatre theatre = userBooking.getTheatre();
-	    int movieId = userBooking.getMovie().getMovieId(); // You need this from booking
-
+	    int movieId = userBooking.getMovie().getMovieId(); 
 	    Map<LocalDate, Map<Integer,Integer>> availableTicketOnDate = theatre.getAvailableTicketOnDate();
-
-	    // Get current available seats for that movie on that date
 	    int noOfTicket = availableTicketOnDate.get(bookedDate).get(movieId);
-
-	    // Add back the returned tickets
 	    noOfTicket += userTicketCount;
-
-	    // Update the map
 	    availableTicketOnDate.get(bookedDate).put(movieId, noOfTicket);
 
-	    // Optional: Confirm update
 	    System.out.println("Tickets returned successfully. Updated availability:");
-	    System.out.println(availableTicketOnDate);
+	 
 	}
 
-	
-//	private static void returnTicket(Booking userBooking) {
-//		int userTicketCount = userBooking.getNumberOfTickets();
-//		LocalDate bookedDate =userBooking.getBookingDate();
-//		Theatre theatreId = userBooking.getTheatre();
-//		
-//		Map<LocalDate, Map<Integer,Integer>> AvailableTicketOnDate=theatreId.getAvailableTicketOnDate();
-//		System.out.println(AvailableTicketOnDate);
-//		int noOfTicket = AvailableTicketOnDate.get(bookedDate).get(theatreId.getTheatreId());
-//		System.err.println(noOfTicket);
-//		
-//		noOfTicket+=userBooking.getNumberOfTickets();
-//		AvailableTicketOnDate.get(bookedDate).put(theatreId.getTheatreId(),noOfTicket);
-//	}
+
 	
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+
 	
 	
 	

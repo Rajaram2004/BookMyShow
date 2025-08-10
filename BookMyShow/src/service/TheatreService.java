@@ -28,37 +28,37 @@ public class TheatreService {
 	public void initializeTheatre(){
 		Map<LocalDate, Map<Integer,Integer>> moviesInOurTheatre1=new HashMap<>();
 		
-		initializeSeats(LocalDate.of(2025, 8, 11), new int[]{1, 2, 3}, 120,moviesInOurTheatre1);
-        initializeSeats(LocalDate.of(2025, 8, 12), new int[]{2, 3}, 100,moviesInOurTheatre1);
-        initializeSeats(LocalDate.of(2025, 8, 13), new int[]{1,2, 3}, 100,moviesInOurTheatre1);
+		initializeSeats(LocalDate.of(2025, 8, 11), new int[]{1, 2, 4,6,8}, 120,moviesInOurTheatre1);
+        initializeSeats(LocalDate.of(2025, 8, 12), new int[]{1,2, 4,6,8}, 100,moviesInOurTheatre1);
+        initializeSeats(LocalDate.of(2025, 8, 13), new int[]{1,2, 4,6,8}, 100,moviesInOurTheatre1);
         
 
 		Map<LocalDate, Map<Integer,Integer>> moviesInOurTheatre2=new HashMap<>();
 		
-		initializeSeats(LocalDate.of(2025, 8, 11), new int[]{4, 5, 6}, 120,moviesInOurTheatre2);
-        initializeSeats(LocalDate.of(2025, 8, 12), new int[]{4, 5}, 100,moviesInOurTheatre2);
-        initializeSeats(LocalDate.of(2025, 8, 13), new int[]{4,5, 6}, 100,moviesInOurTheatre2);
+		initializeSeats(LocalDate.of(2025, 8, 11), new int[]{1,3,5,7,8}, 120,moviesInOurTheatre2);
+        initializeSeats(LocalDate.of(2025, 8, 12), new int[]{1,3,5,7,8}, 100,moviesInOurTheatre2);
+        initializeSeats(LocalDate.of(2025, 8, 13), new int[]{1,3,5,7,8}, 100,moviesInOurTheatre2);
         
 
 		Map<LocalDate, Map<Integer,Integer>> moviesInOurTheatre3=new HashMap<>();
 		
-		initializeSeats(LocalDate.of(2025, 8, 11), new int[]{1, 2, 3}, 120,moviesInOurTheatre3);
-        initializeSeats(LocalDate.of(2025, 8, 12), new int[]{2, 3}, 100,moviesInOurTheatre3);
-        initializeSeats(LocalDate.of(2025, 8, 13), new int[]{1,2, 3}, 100,moviesInOurTheatre3);
+		initializeSeats(LocalDate.of(2025, 8, 11), new int[]{ 2, 3,6,8}, 120,moviesInOurTheatre3);
+        initializeSeats(LocalDate.of(2025, 8, 12), new int[]{2, 3,6,8}, 100,moviesInOurTheatre3);
+        initializeSeats(LocalDate.of(2025, 8, 13), new int[]{2, 3,6,8}, 100,moviesInOurTheatre3);
         
 
 		Map<LocalDate, Map<Integer,Integer>> moviesInOurTheatre4=new HashMap<>();
 		
-		initializeSeats(LocalDate.of(2025, 8, 11), new int[]{1, 2, 3}, 120,moviesInOurTheatre4);
-        initializeSeats(LocalDate.of(2025, 8, 12), new int[]{2, 3}, 100,moviesInOurTheatre4);
-        initializeSeats(LocalDate.of(2025, 8, 13), new int[]{1,2, 3}, 100,moviesInOurTheatre4);
+		initializeSeats(LocalDate.of(2025, 8, 11), new int[]{2, 4,7}, 120,moviesInOurTheatre4);
+        initializeSeats(LocalDate.of(2025, 8, 12), new int[]{2,4, 7}, 100,moviesInOurTheatre4);
+        initializeSeats(LocalDate.of(2025, 8, 13), new int[]{2,4,7 }, 100,moviesInOurTheatre4);
         
 
 		Map<LocalDate, Map<Integer,Integer>> moviesInOurTheatre5=new HashMap<>();
 		
-		initializeSeats(LocalDate.of(2025, 8, 11), new int[]{1, 2, 3}, 120,moviesInOurTheatre5);
-        initializeSeats(LocalDate.of(2025, 8, 12), new int[]{2, 3}, 100,moviesInOurTheatre5);
-        initializeSeats(LocalDate.of(2025, 8, 13), new int[]{1,2, 3}, 100,moviesInOurTheatre5);
+		initializeSeats(LocalDate.of(2025, 8, 11), new int[]{4,5,6}, 120,moviesInOurTheatre5);
+        initializeSeats(LocalDate.of(2025, 8, 12), new int[]{4,5,6}, 100,moviesInOurTheatre5);
+        initializeSeats(LocalDate.of(2025, 8, 13), new int[]{4,5,6}, 100,moviesInOurTheatre5);
         
 
         theatre.add(new Theatre(101, "INOX", "Chennai", 120, 200.0, moviesInOurTheatre1));

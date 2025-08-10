@@ -115,7 +115,7 @@ public class AccountService {
 	}
 	private static double getAmount() {
 		Scanner sc = InputScanner.getScanner();
-		System.out.print("Enter The Amount You Want To Deposit / Withdraw : ");
+		System.out.print("Enter The Amount You Want To Deposit : ");
 		String input = sc.nextLine();
 
 		try {
