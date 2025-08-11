@@ -93,7 +93,7 @@ public class Operations {
 			Operations.operation(num7);
 			break;
 		case 8:
-			System.out.println("You have Selected View Booking");
+			System.out.println("You have Selected View My Booking");
 			//BookingService.printAllBookings();
 			BookingService.printMyBookings();
 			int num8 = Features();

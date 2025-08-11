@@ -1,15 +1,14 @@
 package service;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
 
-import main.BookMyShow;
 import main.InputScanner;
 import main.Movies;
-import main.Operations;
 
 public class MovieService {
 	static HashMap<Integer,Movies> movies;
@@ -27,15 +26,38 @@ public class MovieService {
 	}
 
 	static void initializeMovies() {
+		  movies.put(1, new Movies(1, "Inception", "2h 28m", "Sci-Fi", "English",
+		            new ArrayList<>(Arrays.asList(101, 102))));
 
-		movies.put(1,new Movies(1, "Inception", "2h 28m", "Sci-Fi", "English", Arrays.asList(101, 102)));
-		movies.put(2,new Movies(2, "3 Idiots", "2h 45m", "Comedy", "Hindi", Arrays.asList(101, 103, 104)));
-		movies.put(3,new Movies(3, "Vikram", "2h 55m", "Action", "Tamil", Arrays.asList(102, 103)));
-		movies.put(4,new Movies(4, "RRR", "3h 2m", "Action", "Telugu", Arrays.asList(101, 104, 105)));
-		movies.put(5,new Movies(5, "Spirited Away", "2h 5m", "Fantasy", "Japanese", Arrays.asList(102, 105)));
-		movies.put(6,new Movies(6, "Bahubali", "2h 40m", "Historical", "Telugu", Arrays.asList(101, 103, 105)));
-		movies.put(7,new Movies(7, "Interstellar", "2h 49m", "Sci-Fi", "English", Arrays.asList(102, 104)));
-		movies.put(8,new Movies(8, "Jawan", "2h 30m", "Action", "Hindi", Arrays.asList(101, 102, 103)));
+		    movies.put(2, new Movies(2, "3 Idiots", "2h 45m", "Comedy", "Hindi",
+		            new ArrayList<>(Arrays.asList(101, 103, 104))));
+
+		    movies.put(3, new Movies(3, "Vikram", "2h 55m", "Action", "Tamil",
+		            new ArrayList<>(Arrays.asList(102, 103))));
+
+		    movies.put(4, new Movies(4, "RRR", "3h 2m", "Action", "Telugu",
+		            new ArrayList<>(Arrays.asList(101, 104, 105))));
+
+		    movies.put(5, new Movies(5, "Spirited Away", "2h 5m", "Fantasy", "Japanese",
+		            new ArrayList<>(Arrays.asList(102, 105))));
+
+		    movies.put(6, new Movies(6, "Bahubali", "2h 40m", "Historical", "Telugu",
+		            new ArrayList<>(Arrays.asList(101, 103, 105))));
+
+		    movies.put(7, new Movies(7, "Interstellar", "2h 49m", "Sci-Fi", "English",
+		            new ArrayList<>(Arrays.asList(102, 104))));
+
+		    movies.put(8, new Movies(8, "Jawan", "2h 30m", "Action", "Hindi",
+		            new ArrayList<>(Arrays.asList(101, 102, 103))));
+
+//		movies.put(1,new Movies(1, "Inception", "2h 28m", "Sci-Fi", "English", Arrays.asList(101, 102)));
+//		movies.put(2,new Movies(2, "3 Idiots", "2h 45m", "Comedy", "Hindi", Arrays.asList(101, 103, 104)));
+//		movies.put(3,new Movies(3, "Vikram", "2h 55m", "Action", "Tamil", Arrays.asList(102, 103)));
+//		movies.put(4,new Movies(4, "RRR", "3h 2m", "Action", "Telugu", Arrays.asList(101, 104, 105)));
+//		movies.put(5,new Movies(5, "Spirited Away", "2h 5m", "Fantasy", "Japanese", Arrays.asList(102, 105)));
+//		movies.put(6,new Movies(6, "Bahubali", "2h 40m", "Historical", "Telugu", Arrays.asList(101, 103, 105)));
+//		movies.put(7,new Movies(7, "Interstellar", "2h 49m", "Sci-Fi", "English", Arrays.asList(102, 104)));
+//		movies.put(8,new Movies(8, "Jawan", "2h 30m", "Action", "Hindi", Arrays.asList(101, 102, 103)));
 
 	}
 

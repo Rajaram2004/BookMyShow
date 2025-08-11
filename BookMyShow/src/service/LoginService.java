@@ -95,8 +95,7 @@ public class LoginService {
 					}
 				}
 				TicketService ts = dataModule.get(newId).getTicketService();
-				System.out.println(ts);
-				
+		
 				User user = users.get(newId);
 				Operations op = new Operations(movieService, theatreService, accService,ts , user);
 				

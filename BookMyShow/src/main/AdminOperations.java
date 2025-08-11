@@ -3,6 +3,7 @@ package main;
 import java.util.Scanner;
 
 import service.BookingService;
+import service.TheatreService;
 
 public class AdminOperations {
 	AdminOperations(){
@@ -17,6 +18,8 @@ public class AdminOperations {
 			adminOperations();
 			break;
 		case 2:
+			TheatreService.addTheatreWithMovies();
+		case 3:
 			System.out.println("Thank you");
 			break;
 			
@@ -28,8 +31,8 @@ public class AdminOperations {
 		System.out.println("\n========= Welcome to Movie Booking System Admin =============");
 		System.out.println("Please select one of the following options:\n");
 
-		String[] features = { "1 . View All Bookings "
-				,"2 . Exit" };
+		String[] features = { "1 . View All Bookings ","2 . Add new Theatre "
+				,"3 . Exit" };
 
 		int n = features.length;
 		for (int i = 0; i < features.length; i++) {

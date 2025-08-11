@@ -59,23 +59,26 @@ public class BookingService {
 	}
 
 	public static void SearchByBookingId(int key) {
-
+		
 		Booking ticket = booking.get(key);
+		if(ticket.getUserId()==Operations.user.getUserId()) {
+			System.out.println("=====================================");
+			System.out.println("            Booking Details          ");
+			System.out.println("=====================================");
+			System.out.printf("Booking ID      : %d%n", ticket.getBookingId());
+			System.out.printf("User Name       : %s%n", ticket.getUserName());
+			System.out.printf("Booking Date    : %s%n", ticket.getBookingDate());
+			System.out.printf("Tickets Booked  : %d%n", ticket.getNumberOfTickets());
+			System.out.printf("Total Amount    : ₹%.2f%n", ticket.getTotalAmount());
+			System.out.printf("Bank Account Id : %d%n", ticket.getPaidAccountId());
+			System.out.printf("Booking Status  : %s%n", ticket.isActive() ? "Active" : "Cancelled");
+			System.out.println("=====================================");
+		}else {
+			System.err.println("Ticket status can only be checked by the person who booked it");
+		}
 
-		System.out.println("=====================================");
-		System.out.println("            Booking Details          ");
-		System.out.println("=====================================");
-		System.out.printf("Booking ID      : %d%n", ticket.getBookingId());
-		System.out.printf("User Name       : %s%n", ticket.getUserName());
-		System.out.printf("Booking Date    : %s%n", ticket.getBookingDate());
-		System.out.printf("Tickets Booked  : %d%n", ticket.getNumberOfTickets());
-		System.out.printf("Total Amount    : ₹%.2f%n", ticket.getTotalAmount());
-		System.out.printf("Bank Account Id : %d%n", ticket.getPaidAccountId());
-		System.out.printf("Booking Status  : %s%n", ticket.isActive() ? "Active" : "Cancelled");
-		System.out.println("=====================================");
+		
 	}
-	
-	
 	
 	
 	public static void printMyBookings() {
