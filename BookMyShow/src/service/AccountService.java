@@ -10,11 +10,18 @@ import main.Operations;
 
 public class AccountService {
 	static HashMap<Integer, Account> account;
+	public static HashMap<Integer, Account> getAccount() {
+		return account;
+	}
+
+	public static void setAccount(HashMap<Integer, Account> account) {
+		AccountService.account = account;
+	}
 	static int paidAccountId;
 
 	public AccountService(HashMap<Integer, Account> account) {
 		this.account = account;
-		account.put(1, new Account(101, "Alice Johnson", 1500000000000.75, 1234));
+		account.put(1, new Account(101, "Alice Johnson", 100000.0, 1234));
 		account.put(2, new Account(102, "Bob Smith", 2500.50, 5678));
 		account.put(3, new Account(103, "Charlie Brown", 3200.00, 0000));
 	}
@@ -26,9 +33,6 @@ public class AccountService {
 		double newBalance = (getAmount() + balance);
 		acc.setBalance(newBalance);
 		System.out.println("Money Added To A Bank Account");
-
-		int num = BookMyShow.Features();
-		Operations.operation(num);
 
 	}
 
@@ -63,10 +67,6 @@ public class AccountService {
 		if (checkPassword(accountNumber)) {
 			System.out.println(acc.getBalance());
 		}
-
-		int num = BookMyShow.Features();
-		Operations.operation(num);
-
 	}
 
 	public static int getAccounNumber() {

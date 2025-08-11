@@ -29,7 +29,7 @@ public class UserService {
         return users.containsKey(userId);
     }
 
-    public void addUser() {
+    public int addUser() {
         int newId = users.size() + 1;
 
         System.out.print("Enter username: ");
@@ -52,6 +52,7 @@ public class UserService {
 
         users.put(newId, new User(newId, name, password));
         System.out.println("User added successfully! ID = " + newId);
+        return newId;
     }
 
     public boolean validateUser(int userId, int password) {

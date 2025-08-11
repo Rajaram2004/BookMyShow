@@ -4,6 +4,7 @@ import java.time.LocalDate;
 
 public class Booking {
 	int bookingId;
+	int userId;
 	String userName;
 	Movies Movie;
 	Theatre theatre;
@@ -24,14 +25,23 @@ public class Booking {
 		return isActive;
 	}
 
+	public int getUserId() {
+		return userId;
+	}
+
+	public void setUserId(int userId) {
+		this.userId = userId;
+	}
+
 	public void setActive(boolean isActive) {
 		this.isActive = isActive;
 	}
 
-	public Booking(int bookingId, String userName, Movies movie, Theatre theatre,
+	public Booking(int bookingId,int userId, String userName, Movies movie, Theatre theatre,
 			LocalDate bookingDate,int numberOfTickets, double totalAmount,int paidAccountId ){
 		
 		this.bookingId = bookingId;
+		this.userId=userId;
 		this.userName = userName;
 		this.Movie = movie;
 		this.theatre = theatre;
@@ -44,9 +54,9 @@ public class Booking {
 	
 	@Override
 	public String toString() {
-		return "BookingService [bookingId=" + bookingId + ", userName=" + userName + ", Movie=" + Movie + ", theatre="
+		return "Booking [bookingId=" + bookingId + ", userName=" + userName + ", Movie=" + Movie + ", theatre="
 				+ theatre + ", bookingDate=" + bookingDate + ", numberOfTickets=" + numberOfTickets + ", totalAmount="
-				+ totalAmount + "]";
+				+ totalAmount + ", isActive=" + isActive + ", paidAccountId=" + paidAccountId + "]";
 	}
 
 	public int getBookingId() {
